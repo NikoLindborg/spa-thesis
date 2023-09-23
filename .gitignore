@@ -9,6 +9,8 @@ lerna-debug.log*
 
 react-version/node_modules
 vue-version/node_modules
+react-version/.env
+vue-version/.env
 .DS_Store
 dist
 dist-ssr
