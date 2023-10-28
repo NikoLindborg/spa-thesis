@@ -1,23 +1,38 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import { onMounted } from 'vue'
+import { useStore } from 'vuex'
+import CityList from './components/CityList.vue'
+import getAllWeatherData from '../../react-version/src/services/weatherService'
+import { cities as listOfCities } from './utils/cities'
+
+export default {
+  setup() {
+    const store = useStore()
+
+    const fetchItems = async () => {
+      try {
+        const filteredMappedCities = listOfCities.map((it) => it.id).filter((it) => it != 0)
+        const cityList = await getAllWeatherData(filteredMappedCities)
+        
+        store.commit('setCities', cityList)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    onMounted(() => {
+      fetchItems() 
+    })
+
+    return {
+      CityList
+    }
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <CityList />
 </template>
 
 <style scoped>

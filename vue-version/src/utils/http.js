@@ -1,6 +1,6 @@
 // simple http client
-const api_key = import.meta.env.VUE_APP_API_KEY
-const base_url = import.meta.env.BASE_URL
+const api_key = import.meta.env.VITE_APP_API_KEY
+const base_url = import.meta.env.VITE_BASE_URL
 
 const doFetch = async (url, options) => {
   const response = await fetch(`${base_url}${url}&appid=${api_key}`, options)
