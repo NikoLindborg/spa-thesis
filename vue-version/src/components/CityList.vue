@@ -4,7 +4,6 @@
       <Dropdown
         :cities="dropDownCityList"
         :chosenCity="chosenCity"
-        @set-city="(it) => setChosenCity(it)"
       />
 
       <div className="city-wrapper" v-if="cities != undefined && cities.length !== 0">
@@ -25,9 +24,8 @@ const store = useStore()
 
 const cities = ref([])
 
-const chosenCity = ref('All cities')
-
 const watchedCities = computed(() => store.state.cities)
+const chosenCity = computed(() => store.state.selectedCity)
 const dropDownCityList = ref([])
 
 watch(watchedCities, (newValue, oldValue) => {
@@ -55,10 +53,11 @@ const listOfCities = computed(() => {
   return cities.value.filter((it) => it.name == chosenCity.value)
 })
 
-const setChosenCity = (newCity) => {
-  updateDropdownCityList(newCity, chosenCity.value)
-  chosenCity.value = newCity
-}
+watch(chosenCity, (oldValue, newValue) => {
+  updateDropdownCityList(oldValue, newValue)
+})
+
+
 </script>
 
 <style></style>

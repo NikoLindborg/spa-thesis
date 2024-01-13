@@ -2,26 +2,27 @@
 import React, { useState } from 'react'
 import City from './City'
 import DropDown from './Dropdown'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cities as cityList } from '../utils/cities'
 
 
 const CityList = () => {
   const cities = useSelector((state) => state.cities)
-  const [chosenCity, setChosenCity] = useState("All cities")
-
+  const selectedCity = useSelector((state) => state.selectedCity)
+ 
   return (
     <div className="card-wrapper">
       <div className="dropdown-card-wrapper">
         <DropDown
-          cities={cityList.filter(it => it.city != chosenCity).map((e) => e.city)}
-          chosenCity={chosenCity}
-          setChosenCity={setChosenCity}
+          cities={cityList
+            .filter((it) => it.city != selectedCity)
+            .map((e) => e.city)}
+          chosenCity={selectedCity}
         />
-        {chosenCity == "All cities"
+        {selectedCity == 'All cities'
           ? cities.map((e, i) => <City key={i} city={e} />)
           : cities
-              .filter((e) => e.name == chosenCity)
+              .filter((e) => e.name == selectedCity)
               .map((e, i) => <City key={i} city={e} />)}
       </div>
     </div>
