@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import { useDispatch } from 'react-redux'
-import { selectCity, setSelectedCity } from '../reducers/citySelectionReducer'
+import { selectCity } from '../reducers/citySelectionReducer'
 
 const DropDown = ({ cities, chosenCity }) => {
 
@@ -15,7 +15,7 @@ const DropDown = ({ cities, chosenCity }) => {
     }
   }
   const handleChange = (city) => {
-    dispatch(setSelectedCity(city))
+    dispatch(selectCity(city))
     handleClick()
   }
 

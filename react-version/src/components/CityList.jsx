@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { cities as cityList } from '../utils/cities'
 
 
-const CityList = () => {
+export default function CityList()  {
   const cities = useSelector((state) => state.cities)
   const selectedCity = useSelector((state) => state.selectedCity)
  
@@ -28,5 +28,3 @@ const CityList = () => {
     </div>
   )
 }
-
-export default CityList

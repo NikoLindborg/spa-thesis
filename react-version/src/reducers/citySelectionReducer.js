@@ -5,7 +5,6 @@ const citySelectionSlice = createSlice({
   initialState: 'All cities',
   reducers: {
     setSelectedCity(state, action) {
-      console.log(state, action)
       return action.payload
     },
   },

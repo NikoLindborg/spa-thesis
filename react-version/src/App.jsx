@@ -4,7 +4,8 @@ import CityList from './components/CityList'
 import { initializeCities } from './reducers/cityReducer'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-function App() {
+
+export default function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -18,5 +19,3 @@ function App() {
     </div>
   )
 }
-
-export default App
