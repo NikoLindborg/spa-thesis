@@ -139,7 +139,7 @@ const updatePrecipitation = () => {
 const updateSmallCardList = () => {
   smallCardList.value = city.city.list.slice(0, 5)
 }
-// Call the update function when the component is mounted
+
 onMounted(() => {
   updatePrecipitation()
   updateSmallCardList()

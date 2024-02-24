@@ -1,7 +1,6 @@
 <script>
 import { onMounted } from 'vue'
 import { useStore } from 'vuex'
-import CityList from './components/CityList.vue'
 import getAllWeatherData from '../../react-version/src/services/weatherService'
 import { cities as listOfCities } from './utils/cities'
 
@@ -23,10 +22,6 @@ export default {
     onMounted(() => {
       fetchItems() 
     })
-
-    return {
-      CityList
-    }
   }
 }
 </script>

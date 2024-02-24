@@ -32,7 +32,6 @@ const selectCity = (newCity) => {
 
 const toggleList = () => {
   display.value = display.value === 'none' ? 'block' : 'none'
-  console.log('clicked')
 }
 </script>
 <script>

@@ -7,7 +7,7 @@
       />
 
       <div className="city-wrapper" v-if="cities != undefined && cities.length !== 0">
-        <City v-for="(city, index) in listOfCities" v-bind:key="{ index }" :city="city" />
+        <City v-for="(city, index) in cities" v-bind:key="{ index }" :city="city" />
       </div>
     </div>
   </div>
@@ -22,17 +22,10 @@ import { cities as cityList } from '../utils/cities'
 
 const store = useStore()
 
-const cities = ref([])
 
-const watchedCities = computed(() => store.state.cities)
 const chosenCity = computed(() => store.state.selectedCity)
 const dropDownCityList = ref([])
 
-watch(watchedCities, (newValue, oldValue) => {
-  // Do something when the watched value changes
-  console.log('Value changed:', newValue, oldValue)
-  cities.value = newValue
-})
 
 onMounted(() => {
   initializeDropdownCityList()
@@ -48,13 +41,13 @@ const initializeDropdownCityList = () => {
   dropDownCityList.value = cityList.filter((it) => it.city != chosenCity.value).map((it) => it.city)
 }
 
-const listOfCities = computed(() => {
-  if (chosenCity.value === 'All cities') return cities.value
-  return cities.value.filter((it) => it.name == chosenCity.value)
+const cities = computed(() => {
+  if (chosenCity.value === 'All cities') return store.state.cities
+  return store.state.cities.filter((it) => it.name == chosenCity.value)
 })
 
-watch(chosenCity, (oldValue, newValue) => {
-  updateDropdownCityList(oldValue, newValue)
+watch(chosenCity, (newValue, oldValue) => {
+  updateDropdownCityList(newValue, oldValue)
 })
 
 
